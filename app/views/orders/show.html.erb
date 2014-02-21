@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>User:</strong>
+  <%= @order.user.username %>
+</p>
+
+<p>
+  <strong>Currency:</strong>
+  <%= @order.currency %>
+</p>
+
+<p>
+  <strong>Unit price:</strong>
+  <%= @order.unit_price %>
+</p>
+
+<p>
+  <strong>Volume:</strong>
+  <%= @order.volume %>
+</p>
+
+<p>
+  <strong>Total price:</strong>
+  <%= @order.total_price %>
+</p>
+
+<%= link_to 'Back', orders_path %>

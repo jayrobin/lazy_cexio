@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :orders, dependent: :destroy
+
   def self.find_all_reinvestors
   	User.where("reinvest_btc = ? OR reinvest_nmc = ?", true, true)
   end

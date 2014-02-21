@@ -20,13 +20,19 @@ class Reinvest
 
 			return unless volume.to_f > 0
 
-			order = @api.place_order("buy", volume, "%.8f" % price, "GHS/#{currency}")
+			trade = @api.place_order("buy", volume, "%.8f" % price, "GHS/#{currency}")
 
-			if order["id"]
-				puts "Order placed: BUY #{volume} GHS at #{price}, cost #{balance} #{currency} (id: #{order["id"]})"
+			if trade["id"]
+				order = Hash.new
+				order[:currency] = currency
+				order[:unit_price] = price
+				order[:volume] = volume
+				order[:total_price] = balance
+
+				return order
 			else
 				# insufficient funds
-				puts "Order not placed: #{order["error"]} (BUY #{volume} GHS at #{price}, cost #{balance} #{currency})"
+				nil
 			end
 		end
 	end

@@ -1,6 +1,6 @@
 <div class="jumbotron center">
-	<h1>Welcome to Lazy cex.io</h1>
 	<% if user_signed_in? %>
+		<h2>Status</h2>
 		<% if current_user.reinvest_btc %>
 			<%= link_to "Reinvesting BTC", toggle_reinvest_btc_path, method: :put, class: "btn btn-success btn-lg" %>
 		<% else %>
@@ -11,7 +11,38 @@
 		<% else %>
 			<%= link_to "Not Reinvesting NMC", toggle_reinvest_nmc_path, method: :put, class: "btn btn-danger btn-lg" %>
 		<% end %>
+
+		<br/>
+		<br/>
+		<h2>Recent Orders</h2>
+
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th>Currency</th>
+		      <th>Unit price</th>
+		      <th>Volume</th>
+		      <th>Total price</th>
+		    </tr>
+		  </thead>
+
+		  <tbody>
+		    <% @orders.each do |order| %>
+		      <tr>
+		        <td><%= order.currency %></td>
+		        <td><%= order.unit_price %></td>
+		        <td><%= order.volume %></td>
+		        <td><%= order.total_price %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+
 	<% else %>
+		<h1>Welcome to Lazy cex.io</h1>
+		<h2>Automatically reinvest your cex.io profits into more GHS</h2>
+		<br/>
+		<br/>
 		<p>
 			<%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg" %>
 			<%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>

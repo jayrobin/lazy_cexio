@@ -1,0 +1,27 @@
+<h1>Listing orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Currency</th>
+      <th>Unit price</th>
+      <th>Volume</th>
+      <th>Total price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.currency %></td>
+        <td><%= order.unit_price %></td>
+        <td><%= order.volume %></td>
+        <td><%= order.total_price %></td>
+        <td><%= link_to 'Show', order %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

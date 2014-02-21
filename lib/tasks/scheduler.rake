@@ -10,7 +10,13 @@ task :reinvest => :environment do
 		secret = user.secret
 
 	  Reinvest.connectAPIWithVars user.username, user.key, user.secret
-		Reinvest.buy "NMC" if user.reinvest_nmc
-		Reinvest.buy "BTC" if user.reinvest_btc
+		buy user, "NMC" if user.reinvest_nmc
+		buy user, "BTC" if user.reinvest_btc
 	end
+end
+
+def buy user, currency
+	order = Reinvest.buy currency
+	user.orders.build(order) unless order.nil?
+	user.save
 end
