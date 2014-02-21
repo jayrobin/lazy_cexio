@@ -1,7 +1,16 @@
 <div class="jumbotron center">
 	<h1>Welcome to Lazy cex.io</h1>
 	<% if user_signed_in? %>
-		
+		<% if current_user.reinvest_btc %>
+			<%= link_to "Reinvesting BTC", toggle_reinvest_btc_path, method: :put, class: "btn btn-success btn-lg" %>
+		<% else %>
+			<%= link_to "Not Reinvesting BTC", toggle_reinvest_btc_path, method: :put, class: "btn btn-danger btn-lg" %>
+		<% end %>
+		<% if current_user.reinvest_nmc %>
+			<%= link_to "Reinvesting NMC", toggle_reinvest_nmc_path, method: :put, class: "btn btn-success btn-lg" %>
+		<% else %>
+			<%= link_to "Not Reinvesting NMC", toggle_reinvest_nmc_path, method: :put, class: "btn btn-danger btn-lg" %>
+		<% end %>
 	<% else %>
 		<p>
 			<%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg" %>

@@ -1,6 +1,10 @@
 LazyCexio::Application.routes.draw do
   devise_for :users
   root "pages#home"
+
+  put '/toggle_reinvest_btc', to: 'users#toggle_reinvest_btc'
+  put '/toggle_reinvest_nmc', to: 'users#toggle_reinvest_nmc'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
