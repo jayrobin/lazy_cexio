@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223195449) do
+ActiveRecord::Schema.define(version: 20140223211315) do
 
   create_table "orders", force: true do |t|
     t.string   "currency"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(version: 20140223195449) do
     t.datetime "updated_at"
     t.string   "username"
     t.string   "key"
-    t.string   "secret"
     t.boolean  "reinvest_btc",           default: false
     t.boolean  "reinvest_nmc",           default: false
     t.string   "encrypted_secret"
