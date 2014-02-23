@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	attr_encrypted :secret, key: ENV["SECRET_KEY"], :unless => Rails.env.development?
+	attr_encrypted :secret, key: Rails.env.development? ? 'SECRET_KEY' : ENV['SECRET_KEY']
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
