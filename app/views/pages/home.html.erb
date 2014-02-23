@@ -16,9 +16,14 @@
 		<br/>
 		<h2>Recent Orders</h2>
 
+		<div class="center">
+		  <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
+		</div>
+
 		<table class="table">
 		  <thead>
 		    <tr>
+		      <th>Time</th>
 		      <th>Currency</th>
 		      <th>Unit price</th>
 		      <th>Volume</th>
@@ -29,10 +34,11 @@
 		  <tbody>
 		    <% @orders.each do |order| %>
 		      <tr>
+		        <td><%= order.created_at.to_formatted_s(:db) %></td>
 		        <td><%= order.currency %></td>
-		        <td><%= order.unit_price %></td>
-		        <td><%= order.volume %></td>
-		        <td><%= order.total_price %></td>
+		        <td><%= number_with_precision(order.unit_price, precision: 8) %></td>
+		        <td><%= number_with_precision(order.volume, precision: 8) %></td>
+		        <td><%= number_with_precision(order.total_price, precision: 8) %></td>
 		      </tr>
 		    <% end %>
 		  </tbody>
