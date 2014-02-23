@@ -13,6 +13,7 @@ gem 'devise', "~> 3.2.2"
 gem "addressable", "~> 2.3.5"
 gem "will_paginate", "~> 3.0.5"
 gem "will_paginate-bootstrap", "~> 1.0.0"
+gem "attr_encrypted", "~> 1.3.2"
 
 group :doc do
   gem 'sdoc', require: false

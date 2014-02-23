@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221194434) do
+ActiveRecord::Schema.define(version: 20140223195449) do
 
   create_table "orders", force: true do |t|
     t.string   "currency"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20140221194434) do
     t.string   "secret"
     t.boolean  "reinvest_btc",           default: false
     t.boolean  "reinvest_nmc",           default: false
+    t.string   "encrypted_secret"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
