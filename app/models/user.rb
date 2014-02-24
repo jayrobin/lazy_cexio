@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   def self.find_all_reinvestors
   	User.where("reinvest_btc = ? OR reinvest_nmc = ?", true, true)
   end
+
+  def api_setup_complete?
+  	return  username != "" && key != "" && secret != ""
+  end
 end

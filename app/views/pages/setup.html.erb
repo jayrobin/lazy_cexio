@@ -1,0 +1,42 @@
+<% provide(:title, "Setup API Keys") %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1>Setup API Keys</h1>
+  </div>
+
+  <div class="panel-body">
+  	<h3>To obtain your API keys...</h3>
+  	<ol>
+		  <li>Enter your cex.io username into the box below. If you do not know it, log onto cex.io and you will find it in the top-right corner of the page</li>
+		  <li>Log onto cex.io and go to https://cex.io/trade/profile</li>
+		  <li>Click on the API tab</li>
+		  <li>Click 'Generate Key'</li>
+		  <li>Copy the 'Key' into the box below</li>
+		  <li>Copy the 'Secret' into the box below</li>
+		  <li>Click 'Activate' next to the generated key</li>
+		  <li>Click 'Continue' at the bottom of this page to save your API keys</li>
+		</ol>
+
+    <%= form_for(@user, url: setup_path(@user), method: :post) do |f| %>
+
+      <div class="form-group">
+        <%= f.label :username %>
+        <%= f.text_field :username, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :key %>
+        <%= f.text_field :key, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :secret %>
+        <%= f.password_field :secret, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.submit "Continue", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

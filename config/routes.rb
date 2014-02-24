@@ -2,7 +2,10 @@ LazyCexio::Application.routes.draw do
   resources :orders
 
   devise_for :users
-  root "pages#home"
+  root 'pages#home'
+
+  match '/setup', to: 'pages#setup', via: :get
+  match '/setup', to: 'pages#update_setup', via: :post
 
   put '/toggle_reinvest_btc', to: 'users#toggle_reinvest_btc'
   put '/toggle_reinvest_nmc', to: 'users#toggle_reinvest_nmc'
