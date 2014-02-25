@@ -8,7 +8,7 @@
   <div class="panel-body">
     <h3>Change your API keys</h3>
     <p>You must retrieve your API keys from cex.io and ensure they are entered correctly</p>
-    <p><%= link_to "Setup API Keys", setup_path, class: "btn btn-warning" %></p>
+    <p><%= link_to "Setup API Keys", setup_path, class: "btn btn-primary" %></p>
 
     <h3>Change your email or password</h3>
     <p>Your email is used to log onto lazycexio. If you wish to change it, you will need to re-enter your current password below</p>
@@ -38,6 +38,6 @@
   <div class="panel-footer">
     <h3>Cancel my account</h3>
     <p>If you would like to cancel your lazycexio account, simply click the button below and we will delete your account. Note that we cannot recover cancelled accounts</p>
-    <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: "btn btn-warning" %>
+    <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, class: "btn btn-danger" %>
   </div>
 </div>

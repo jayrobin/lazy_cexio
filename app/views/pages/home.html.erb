@@ -1,51 +1,76 @@
-<div class="jumbotron center">
-	<% if user_signed_in? %>
-		<h1><%= @volume %> GHS bought in last 24hrs</h1>
-		<h2>Status</h2>
-		<% if current_user.reinvest_btc %>
-			<%= link_to "Reinvesting BTC", toggle_reinvest_btc_path, method: :put, class: "btn btn-success btn-lg" %>
-		<% else %>
-			<%= link_to "Not Reinvesting BTC", toggle_reinvest_btc_path, method: :put, class: "btn btn-danger btn-lg" %>
-		<% end %>
-		<% if current_user.reinvest_nmc %>
-			<%= link_to "Reinvesting NMC", toggle_reinvest_nmc_path, method: :put, class: "btn btn-success btn-lg" %>
-		<% else %>
-			<%= link_to "Not Reinvesting NMC", toggle_reinvest_nmc_path, method: :put, class: "btn btn-danger btn-lg" %>
-		<% end %>
+<% if user_signed_in? %>
+	<div class="row">
+    <div class="col-md-3">
+    	<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Status</h3>
+			  </div>
+			  <div class="panel-body">
+			  	<div>
+				    <% if current_user.reinvest_btc %>
+							<%= link_to "Reinvesting BTC", toggle_reinvest_btc_path, method: :put, class: "btn btn-success btn-lg btn-block" %>
+						<% else %>
+							<%= link_to "Not Reinvesting BTC", toggle_reinvest_btc_path, method: :put, class: "btn btn-danger btn-lg btn-block" %>
+						<% end %>
+					</div>
+					<br/>
+			  	<div>
+						<% if current_user.reinvest_nmc %>
+							<%= link_to "Reinvesting NMC", toggle_reinvest_nmc_path, method: :put, class: "btn btn-success btn-lg btn-block" %>
+						<% else %>
+							<%= link_to "Not Reinvesting NMC", toggle_reinvest_nmc_path, method: :put, class: "btn btn-danger btn-lg btn-block" %>
+						<% end %>
+					</div>
+			  </div>
+			</div>
+    	<div class="panel panel-default">
+			  <div class="panel-body">
+			   	<p><%= @day_volume %> GHS bought in last 24hrs</p>
+			   	<p><%= @week_volume %> GHS bought in last week</p>
+			   	<p><%= @month_volume %> GHS bought in last month</p>
+			   	<p><%= @all_volume %> GHS bought total</p>
+			  </div>
+			</div>
+    </div>
+    <div class="col-md-9">
+    	<div class="panel panel-default">
+			  <div class="panel-heading">
+			    <h3 class="panel-title">Trade History</h3>
+			  </div>
+			  <div class="panel-body">
+					<div class="center">
+					  <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
+					</div>
 
-		<br/>
-		<br/>
-		<h2>Trades</h2>
+					<table class="table">
+					  <thead>
+					    <tr>
+					      <th>Time</th>
+					      <th>Currency</th>
+					      <th>Unit price</th>
+					      <th>Volume</th>
+					      <th>Total price</th>
+					    </tr>
+					  </thead>
 
-		<div class="center">
-		  <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>
-		</div>
-
-		<table class="table">
-		  <thead>
-		    <tr>
-		      <th>Time</th>
-		      <th>Currency</th>
-		      <th>Unit price</th>
-		      <th>Volume</th>
-		      <th>Total price</th>
-		    </tr>
-		  </thead>
-
-		  <tbody>
-		    <% @orders.each do |order| %>
-		      <tr>
-		        <td><%= order.created_at.to_formatted_s(:db) %></td>
-		        <td><%= order.currency %></td>
-		        <td><%= number_with_precision(order.unit_price, precision: 8) %></td>
-		        <td><%= number_with_precision(order.volume, precision: 8) %></td>
-		        <td><%= number_with_precision(order.total_price, precision: 8) %></td>
-		      </tr>
-		    <% end %>
-		  </tbody>
-		</table>
-
-	<% else %>
+					  <tbody>
+					    <% @orders.each do |order| %>
+					      <tr>
+					        <td><%= order.created_at.to_formatted_s(:db) %></td>
+					        <td><%= order.currency %></td>
+					        <td><%= number_with_precision(order.unit_price, precision: 8) %></td>
+					        <td><%= number_with_precision(order.volume, precision: 8) %></td>
+					        <td><%= number_with_precision(order.total_price, precision: 8) %></td>
+					      </tr>
+					    <% end %>
+					  </tbody>
+					</table>
+			  </div>
+			</div>
+    </div>
+  </div>
+<% else %>
+	<div class="jumbotron center">
 		<h1>Welcome to Lazy cex.io</h1>
 		<h2>Automatically reinvest your cex.io profits into more GHS</h2>
 		<br/>
@@ -54,5 +79,5 @@
 			<%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg" %>
 			<%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
 		</p>
-	<% end %>
-</div>
+	</div>
+<% end %>

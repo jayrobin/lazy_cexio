@@ -4,7 +4,11 @@ class PagesController < ApplicationController
 
   	if user_signed_in?
   		@orders = current_user.orders.order("id DESC").paginate(page: params[:page], per_page: 10)
-  		@volume = "%.8f" % current_user.get_volume_traded_today
+  		
+  		@day_volume = "%.8f" % current_user.get_volume_traded_today
+  		@week_volume = "%.8f" % current_user.get_volume_traded_week
+  		@month_volume = "%.8f" % current_user.get_volume_traded_month
+  		@all_volume = "%.8f" % current_user.get_volume_traded_all
   	end
   end
 

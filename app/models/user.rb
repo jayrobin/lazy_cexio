@@ -13,10 +13,26 @@ class User < ActiveRecord::Base
   end
 
   def api_setup_complete?
-  	return  username != "" && key != "" && secret != ""
+  	return  !username.blank? && !key.blank? && !secret.blank?
   end
 
   def get_volume_traded_today
-  	orders.where("created_at > ?", 1.days.ago).sum(:volume)
+  	get_volume_traded_since 1.day.ago
+  end
+
+  def get_volume_traded_week
+  	get_volume_traded_since 1.week.ago
+  end
+
+  def get_volume_traded_month
+  	get_volume_traded_since 1.month.ago
+  end
+
+  def get_volume_traded_all
+  	get_volume_traded_since created_at
+  end
+
+  def get_volume_traded_since date
+  	orders.where("created_at > ?", date).sum(:volume)
   end
 end
