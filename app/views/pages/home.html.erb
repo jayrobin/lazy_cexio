@@ -1,5 +1,6 @@
 <div class="jumbotron center">
 	<% if user_signed_in? %>
+		<h1><%= @volume %> GHS bought in last 24hrs</h1>
 		<h2>Status</h2>
 		<% if current_user.reinvest_btc %>
 			<%= link_to "Reinvesting BTC", toggle_reinvest_btc_path, method: :put, class: "btn btn-success btn-lg" %>
@@ -14,7 +15,7 @@
 
 		<br/>
 		<br/>
-		<h2>Recent Orders</h2>
+		<h2>Trades</h2>
 
 		<div class="center">
 		  <%= will_paginate @orders, renderer: BootstrapPagination::Rails %>

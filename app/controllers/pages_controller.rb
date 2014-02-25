@@ -4,6 +4,7 @@ class PagesController < ApplicationController
 
   	if user_signed_in?
   		@orders = current_user.orders.order("id DESC").paginate(page: params[:page], per_page: 10)
+  		@volume = "%.8f" % current_user.get_volume_traded_today
   	end
   end
 
