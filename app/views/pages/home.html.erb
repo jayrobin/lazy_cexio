@@ -71,13 +71,48 @@
   </div>
 <% else %>
 	<div class="jumbotron center">
-		<h1>Welcome to Lazy cex.io</h1>
-		<h2>Automatically reinvest your cex.io profits into more GHS</h2>
-		<br/>
-		<br/>
-		<p>
+		<h1>cex.io Auto Reinvestor</h1>
+		<p>Automatically reinvest your cex.io profits into more GHS</p>
+		<div>
 			<%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg" %>
 			<%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
-		</p>
+		</div>
+	</div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3>Auto-reinvest</h3>
+					</div>
+					<div class="panel-body">
+						<p>Just sign-up, enter your cex.io API keys and you're done! Every hour it checks to see if you've earned any BTC/NMC and orders more GHS</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3>BTC and NMC</h3>
+					</div>
+					<div class="panel-body">
+						<p>You can enable it to reinvest both BTC and NMC in more GHS</p>
+						<br class=""/>
+						<br class=""/>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3>Trade Logging</h3>
+					</div>
+					<div class="panel-body">
+						<p>All reinvestments are logged so you can sit and watch your GHS grow</p>
+						<br class=""/>
+						<br class=""/>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 <% end %>
