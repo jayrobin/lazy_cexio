@@ -17,10 +17,12 @@ class Reinvest
 		if balance.to_f > 0.00000001
 			price = @api.ticker("GHS/#{currency}")["bid"].to_f
 			volume = "%.8f" % (((balance.to_f / price) * 100000000).floor.to_f / 100000000)
+			volume = (((balance.to_f / price) * 100000000).floor.to_f / 100000000) * 0.997
+
 
 			return unless volume.to_f > 0
 
-			trade = @api.place_order("buy", volume, "%.8f" % price, "GHS/#{currency}")
+			trade = @api.place_order("buy", "%.8f" % volume, "%.8f" % price, "GHS/#{currency}")
 
 			if trade["id"]
 				order = Hash.new
